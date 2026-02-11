@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deogiri Attendance System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: #f4f6f9;
+        }
+
+        /* Navbar */
+        nav {
+            background: #1e3c72;
+            color: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h1 {
+            font-size: 22px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        nav ul li:hover {
+            text-decoration: underline;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        /* Form */
+        .form-box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-box h2 {
+            margin-bottom: 20px;
+            color: #1e3c72;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            background: #1e3c72;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #16325c;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #1e3c72;
+            color: white;
+        }
+
+        tr:hover {
+            background: #f1f1f1;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <h1>Deogiri Attendance</h1>
+    <ul>
+        <li>Home</li>
+        <li>Attendance</li>
+        <li>Reports</li>
+        <li>Logout</li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="form-box">
+        <h2>Mark Attendance</h2>
+
+        <div class="form-group">
+            <label>Student Name</label>
+            <input type="text" id="name" placeholder="Enter student name">
+        </div>
+
+        <div class="form-group">
+            <label>Roll Number</label>
+            <input type="text" id="roll" placeholder="Enter roll number">
+        </div>
+
+        <div class="form-group">
+            <label>Department</label>
+            <input type="text" id="dept" placeholder="Enter department">
+        </div>
+
+        <div class="form-group">
+            <label>Status</label>
+            <select id="status">
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+            </select>
+        </div>
+
+        <button onclick="addAttendance()">Submit Attendance</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Roll No</th>
+                <th>Department</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="attendanceList"></tbody>
+    </table>
+</div>
+
+<footer>
+    © 2026 Deogiri College Attendance System
+</footer>
+
+<script>
+    function addAttendance() {
+        let name = document.getElementById("name").value;
+        let roll = document.getElementById("roll").value;
+        let dept = document.getElementById("dept").value;
+        let status = document.getElementById("status").value;
+
+        if (name === "" || roll === "" || dept === "") {
+            alert("Please fill all fields");
+            return;
+        }
+
+        let table = document.getElementById("attendanceList");
+        let row = table.insertRow();
+
+        row.innerHTML = `
+            <td>${name}</td>
+            <td>${roll}</td>
+            <td>${dept}</td>
+            <td>${status}</td>
+        `;
+
+        document.getElementById("name").value = "";
+        document.getElementById("roll").value = "";
+        document.getElementById("dept").value = "";
+    }
+</script>
+
+</body>
+</html>
